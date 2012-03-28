@@ -1,0 +1,150 @@
+package cs2340.todo.model;
+
+import java.util.LinkedList;
+import java.util.List;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.location.Location;
+import android.text.format.Time;
+
+/**
+ * 
+ * @author Vertigo
+ *
+ */
+public class TODOManager {
+	private UserOpenHelper ourHelper;
+	private SQLiteDatabase items;
+	private final Context ourContext;
+	public static final String ITEM_ID = "_id";
+	public static final String ITEM_USER = "item_user";
+	public static final String ITEM_TITLE = "item_title";
+	public static final String ITEM_DESCRIPTION = "item_description";
+	public static final String ITEM_TIME = "item_time";
+	public static final String ITEM_LOCATION = "item_location";
+	public static final String ITEM_CATEGORY = "item_category";
+	
+	private static final int DATABASE_VERSION = 1;
+	private static final String DATABASE_NAME = "items";
+	private static final String DATABASE_TABLE_NAME = "itemTable";
+	private static final String DATABASE_CREATE = "CREATE TABLE "
+			+ DATABASE_TABLE_NAME + " (" + ITEM_ID
+			+ " INTEGER PRIMARY KEY AUTOINCREMENT, " + ITEM_USER + " TEXT NOT NULL, "+ ITEM_TITLE + " TEXT NOT NULL, "
+			+ ITEM_DESCRIPTION + " TEXT NOT NULL, " + ITEM_TIME + " INTEGER, " + ITEM_LOCATION
+			+ " TEXT NOT NULL, " + ITEM_CATEGORY + " TEXT NOT NULL);";
+	
+	/**
+	 * 
+	 * @author Vertigo
+	 *
+	 */
+	public class UserOpenHelper extends SQLiteOpenHelper {
+
+		public UserOpenHelper(Context context) {
+			super(context, DATABASE_NAME, null, DATABASE_VERSION);
+		}
+
+		@Override
+		public void onCreate(SQLiteDatabase db) {
+			// TODO Auto-generated method stub
+			db.execSQL(DATABASE_CREATE);	
+		}
+
+		@Override
+		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+			// TODO Auto-generated method stub
+
+		}
+
+	}
+	
+	public TODOManager(Context c) {
+		ourContext = c;
+			
+	}
+
+	/**
+	 * Opens the database help to allow writing to the database.
+	 * 
+	 * @return this
+	 */
+	public TODOManager open() {
+		ourHelper = new UserOpenHelper(ourContext);
+		items = ourHelper.getWritableDatabase();
+		return this;
+	}
+
+	/**
+	 * Close the helper to prevent stray database manipulation.
+	 */
+	public void close() {
+		ourHelper.close();
+	}
+	
+	/**
+	 * add a new item to item database
+	 * @param i item to be added
+	 * @return long
+	 */
+	public long addItem(String u, TODOItem i) {
+		ContentValues cv = new ContentValues();
+		cv.put(ITEM_USER, u);
+		cv.put(ITEM_TITLE, i.getTitle());
+		cv.put(ITEM_DESCRIPTION, i.getDescription());
+		cv.put(ITEM_TIME, i.getTime());
+		cv.put(ITEM_LOCATION, i.getLocation().toString());
+		cv.put(ITEM_CATEGORY, i.getCategory().toString());
+		return items.insert(DATABASE_TABLE_NAME, null, cv);
+	}
+	
+	public void reset() {
+		ourHelper.getWritableDatabase().delete(DATABASE_TABLE_NAME, null, null);
+		items.insert(DATABASE_TABLE_NAME, null, null);
+	}
+	
+	/**
+	 * getallitems
+	 * @return array of items
+	 */
+	public List<TODOItem> getAllTODOItems() {
+		String[] columns = new String[]{ ITEM_ID, ITEM_USER, ITEM_TITLE, ITEM_DESCRIPTION, ITEM_TIME, ITEM_LOCATION, ITEM_CATEGORY};
+		List<TODOItem> itemArray = new LinkedList<TODOItem>();
+		Cursor c = items.query(DATABASE_TABLE_NAME, columns, null, null, null, null, null);
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			//itemArray.add();
+		}
+		return itemArray;
+	}
+	
+	/**
+	 * get all items for current user
+	 * @return List of items
+	 */
+	public List<TODOItem> getUserItems(User u) {
+		String[] columns = new String[] { ITEM_ID, ITEM_USER, ITEM_TITLE, ITEM_DESCRIPTION, ITEM_TIME, ITEM_LOCATION, ITEM_CATEGORY};
+		List<TODOItem> itemArray = new LinkedList<TODOItem>();
+		Cursor c = items.query(DATABASE_TABLE_NAME, columns, ITEM_USER + "='" + u.getUsername() + "'", null, null, null, null);
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			itemArray.add(new TODOItem(c.getString(1), c.getString(2), c.getString(3), c.getInt(4), new Location(c.getString(5)), new Category(c.getString(6))));
+		}
+		return itemArray;
+	}
+	
+	/**
+	 * get all items for current user
+	 * @return List of items
+	 */
+	public String getData(User u) {
+		String[] columns = new String[] { ITEM_ID, ITEM_USER, ITEM_TITLE, ITEM_DESCRIPTION, ITEM_TIME, ITEM_LOCATION, ITEM_CATEGORY};
+		String result = "";
+		Cursor c = items.query(DATABASE_TABLE_NAME, columns, ITEM_USER + "='" + u.getUsername() + "'", null, null, null, null);
+		for(c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			result += c.getString(2) + "\n";
+		}
+		return result;
+	}
+}

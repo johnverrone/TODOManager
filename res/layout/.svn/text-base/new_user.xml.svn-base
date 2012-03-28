@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="5dp" >
+
+   <!--  <TextView
+        android:id="@+id/lblName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:text="Name:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+    <TextView
+        android:id="@+id/lblUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblName"
+        android:layout_below="@+id/lblName"
+        android:layout_marginTop="10dp"
+        android:text="Username:"
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <TextView
+        android:id="@+id/lblPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblUsername"
+        android:layout_below="@+id/lblUsername"
+        android:layout_marginTop="10dp"
+        android:text="Password:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+    <TextView
+        android:id="@+id/lblPassword2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblPassword"
+        android:layout_below="@+id/lblPassword"
+        android:layout_marginTop="10dp"
+        android:text="Password:"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/lblEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblPassword2"
+        android:layout_below="@+id/lblPassword2"
+        android:layout_marginTop="10dp"
+        android:text="Email:"
+        android:textAppearance="?android:attr/textAppearanceLarge" /> -->
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName" 
+        android:hint="Name" android:layout_margin="3dp">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtName"
+        android:hint="Username" android:layout_margin="3dp"/>
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUsername"
+        android:inputType="textPassword" 
+        android:hint="Password" android:layout_margin="3dp"/>
+
+
+    <EditText
+        android:id="@+id/txtPassword2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword"
+        android:inputType="textPassword"
+        android:hint="Repeat Password" android:layout_margin="3dp"/>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword2"
+        android:inputType="textEmailAddress" 
+        android:hint="Email" android:layout_margin="3dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCreate"        
+        android:layout_centerHorizontal="true"
+        android:text="Cancel" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignParentLeft="true"
+        android:text="Create" android:layout_marginTop="5dp"/>
+
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:padding="5dp" >
+
+    <EditText
+        android:id="@+id/txtName"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName" 
+        android:hint="@string/name" android:layout_margin="3dp">
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/txtUsername"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtName"
+        android:hint="@string/username" android:layout_margin="3dp"/>
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUsername"
+        android:inputType="textPassword" 
+        android:hint="@string/password" android:layout_margin="3dp"/>
+
+
+    <EditText
+        android:id="@+id/txtPassword2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword"
+        android:inputType="textPassword"
+        android:hint="@string/repeat_password" android:layout_margin="3dp"/>
+
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPassword2"
+        android:inputType="textEmailAddress" 
+        android:hint="@string/email" android:layout_margin="3dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnCreate"        
+        android:layout_centerHorizontal="true"
+        android:text="@string/cancel" />
+
+    <Button
+        android:id="@+id/btnCreate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtEmail"
+        android:layout_alignParentLeft="true"
+        android:text="@string/create" android:layout_marginTop="5dp"/>
+
+</RelativeLayout>

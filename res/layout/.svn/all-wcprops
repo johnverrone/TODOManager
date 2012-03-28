@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/9/trunk/TODOManager/res/layout
+END
+main.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/9/trunk/TODOManager/res/layout/main.xml
+END
+login.xml
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/4/trunk/TODOManager/res/layout/login.xml
+END
+new_user.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5/trunk/TODOManager/res/layout/new_user.xml
+END
+new_category.xml
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/6/trunk/TODOManager/res/layout/new_category.xml
+END
+catergory_item.xml
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/3/trunk/TODOManager/res/layout/catergory_item.xml
+END
+new_item.xml
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/6/trunk/TODOManager/res/layout/new_item.xml
+END
+newitem.xml
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/3/trunk/TODOManager/res/layout/newitem.xml
+END
+list_item.xml
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/9/trunk/TODOManager/res/layout/list_item.xml
+END

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, TODOManagerActivity!</string>
+    <string name="app_name">To-Do Manager</string>
+
+    <string-array name="categories_array">
+        <item>Choose a category</item>
+        <item>Personal</item>
+        <item>School</item>
+        <item>Work</item>
+    </string-array>
+    <string-array name="filter_categories_array">
+        <item>All Categories</item>
+        <item>Personal</item>
+        <item>School</item>
+        <item>Work</item>
+    </string-array>
+    <string-array name="completion_array">
+        <item>All Items</item>
+        <item>Complete</item>
+        <item>Incomplete</item>
+    </string-array>
+
+    <string name="edit_item">Edit Item</string>
+    <string name="view_item">View Item</string>
+    <string name="new_item">New Item</string>
+    <string name="title">Title</string>
+    <string name="description">Description</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="location">Location</string>
+    <string name="done">Done</string>
+    <string name="cancel">Cancel</string>
+    <string name="complete">Complete</string>
+    <string name="all">All Items</string>
+    <string name="incomplete">Incomplete</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="create">Create</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="category">Category</string>
+
+</resources>

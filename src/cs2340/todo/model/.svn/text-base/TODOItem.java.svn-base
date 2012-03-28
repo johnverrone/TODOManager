@@ -1,0 +1,138 @@
+package cs2340.todo.model;
+
+import java.util.Calendar;
+
+import android.location.Location;
+import android.text.format.Time;
+
+/**
+ * 
+ * @author Vertigo
+ *
+ */
+public class TODOItem {
+	private String user;
+	private String title;
+	private String description;
+	private int time;
+	private Location location;
+	private Category category;
+
+	/**
+	 * Build new Item
+	 * @param u
+	 * @param t
+	 * @param d
+	 * @param time
+	 * @param l
+	 * @param c
+	 */
+	public TODOItem(String u, String t, String d, int time, Location l, Category c) {
+		this.setUser(u);
+		this.setTitle(t);
+		this.setDescription(d);
+		this.setTime(time);
+		this.setLocation(l);
+		this.setCategory(c);
+	}
+
+	/**
+	 * getTitle
+	 * @return title
+	 */
+	public String getTitle() {
+		return title;
+	}
+
+	/**
+	 * change the title
+	 * @param title new title
+	 */
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	/**
+	 * getDescription
+	 * @return description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * change the description
+	 * @param description new description
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	/**
+	 * getTime
+	 * @return time
+	 */
+	public int getTime() {
+		return time;
+	}
+
+	/**
+	 * change the time
+	 * @param time2 new time
+	 */
+	public void setTime(int time) {
+		this.time = time;
+	}
+
+	/**
+	 * getLocation
+	 * @return locations
+	 */
+	public Location getLocation() {
+		return location;
+	}
+
+	/**
+	 * change the location
+	 * @param location new location
+	 */
+	public void setLocation(Location location) {
+		this.location = location;
+	}
+
+	/**
+	 * getCategory
+	 * @return category
+	 */
+	public Category getCategory() {
+		return category;
+	}
+
+	/**
+	 * change the category
+	 * @param category new category
+	 */
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	/**
+	 * get user affiliated with item
+	 * @return user
+	 */
+	public String getUser() {
+		return user;
+	}
+
+	/**
+	 * change the user
+	 * @param u new user
+	 */
+	public void setUser(String u) {
+		this.user = u;
+	}
+	
+	public String toString() {
+		return title + " " + description + " " + time + " " + location.toString() + " " + category.toString();
+	}
+}
