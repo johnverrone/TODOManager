@@ -42,6 +42,7 @@ public class EditItemActivity extends Activity {
 
 	/**
 	 * Called when the activity is created
+	 * @param Bundle saveInstanceState
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +51,8 @@ public class EditItemActivity extends Activity {
 		//get user info from TODOManagerActivity
 		Bundle getU = getIntent().getExtras();
         user = new User(getU.getString("name"), getU.getString("username"), getU.getString("email"), getU.getString("password"));
+        
+        //get item info from TODOManagerActivity
         SimpleDateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
         item = null;
         try {
@@ -59,6 +62,7 @@ public class EditItemActivity extends Activity {
 			
 		}
         
+        //Set up views and date formats
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yy");
         SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm a");
 
@@ -80,15 +84,18 @@ public class EditItemActivity extends Activity {
 		txtTime.setText(itemTime);
 		txtLocation.setText(item.getLocation());
 	
-		//Category spin adapter
+		//Category spinner adapter
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
 		this, R.array.categories_array, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinCategory.setAdapter(adapter);
 		spinCategory.setSelection(adapter.getPosition(item.getCategory().toString()));
+		spinCategory.setOnItemSelectedListener(new MyOnItemSelectedListener());
 		
+		//Instantiate the TODOManager that reads from database
 		manager = new TODOManager(EditItemActivity.this);
 
+		//Set up onClickListeners()
 		btnDone.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -132,6 +139,7 @@ public class EditItemActivity extends Activity {
 			}
 		});
 
+		//Get date of item
 		mYear = Integer.parseInt(new SimpleDateFormat("yyyy").format(item.getDate()));
 		mMonth =  Integer.parseInt(new SimpleDateFormat("MM").format(item.getDate()));
 		mDay =  Integer.parseInt(new SimpleDateFormat("dd").format(item.getDate()));
@@ -139,8 +147,6 @@ public class EditItemActivity extends Activity {
 		mMinute =  Integer.parseInt(new SimpleDateFormat("mm").format(item.getDate()));
 
 		date = new Date();
-		
-		spinCategory.setOnItemSelectedListener(new MyOnItemSelectedListener());
 	}
 
 	/**
@@ -161,9 +167,7 @@ public class EditItemActivity extends Activity {
 		txtTime.setText(timeFormatter.format(date));
 	}
 
-	/**
-	 * DatePicker dialog
-	 */
+	//DatePicker dialog
 	private DatePickerDialog.OnDateSetListener mDateSetListener =
 			new DatePickerDialog.OnDateSetListener() {
 
@@ -176,9 +180,7 @@ public class EditItemActivity extends Activity {
 		}
 	};
 
-	/**
-	 * TimePicker dialog
-	 */
+	//TimePickerDialog
 	private TimePickerDialog.OnTimeSetListener mTimeSetListener =
 			new TimePickerDialog.OnTimeSetListener() {
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -189,7 +191,9 @@ public class EditItemActivity extends Activity {
 	};
 	
 	/**
-	 * custom dialog for creating new category
+	 * Custom dialog for creating new category
+	 * @param int id - id of dialog to be created
+	 * @return Dialog - dialog to be created
 	 */
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -203,6 +207,7 @@ public class EditItemActivity extends Activity {
 		}
 		return null;
 	}
+	
 	
 	/**
 	 * 

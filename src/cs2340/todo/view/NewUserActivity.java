@@ -1,17 +1,17 @@
 package cs2340.todo.view;
 
-import cs2340.todo.model.User;
-import cs2340.todo.model.UserManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.view.Gravity;
+import cs2340.todo.model.User;
+import cs2340.todo.model.UserManager;
 
 /**
  * 
@@ -39,6 +39,7 @@ public class NewUserActivity extends Activity {
 		txtPassword2 = (EditText) findViewById(R.id.txtPassword2);
 		txtEmail = (EditText) findViewById(R.id.txtEmail);
 		
+		//Set onClickListeners and onFocusChangedListeners
 		txtUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 			
 			public void onFocusChange(View v, boolean hasFocus) {
@@ -113,6 +114,7 @@ public class NewUserActivity extends Activity {
 				}
 			}
 		});
+		
 		btnCancel.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -143,7 +145,7 @@ public class NewUserActivity extends Activity {
 		if(name.equals("")) {
 			return false;
 		}
-		if(email.equals("") || !email.contains("@") || !email.contains(".")) {
+		if(!email.toLowerCase().matches("[a-z][a-z0-9._+-]*@[a-z][a-z0-9._-]*.(com|org|net|edu)")) {
 			return false;
 		}
 		return true;

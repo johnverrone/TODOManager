@@ -1,0 +1,28 @@
+All the check methods could probably use a lot more work.  
+They are basically the methods that get called when a task or user is about to be created/changed/used/etc.
+Add some things to those so we can get valid checks on our stuff before implementing JUnits.
+
+I made a list of methods that we could make JUnit tests for pretty easily (and what class they are in):
+
+EditItemActivity:
+	checkItem()
+	
+LoginActivity:
+	checkLogin()
+	
+MainMapActivity:
+
+NewItemActivity:
+	checkItem()
+	updateDisplay()
+
+NewUserActivity:
+	checkUser()
+
+TODOManagerActivity:
+	updateDisplay()
+	onCreateOptionsMenu()
+	onOptionsItemSelected()
+	performFiltering()
+
+ViewItemActivity:

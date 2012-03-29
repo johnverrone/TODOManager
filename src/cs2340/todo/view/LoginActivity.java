@@ -32,6 +32,7 @@ public class LoginActivity extends Activity {
 			
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
+//		Remove comment and run program to reset the database
 //		UserManager entry = new UserManager(LoginActivity.this);
 //		entry.open();
 //		entry.reset();
@@ -40,13 +41,13 @@ public class LoginActivity extends Activity {
 		btnNewUser = (Button) findViewById(R.id.btnNewUser);
 		txtUser = (TextView) findViewById(R.id.txtUser);
 		txtPassword = (TextView) findViewById(R.id.txtPassword);
+		
+		//Set onClickListeners
 		btnLogin.setOnClickListener(new View.OnClickListener() {
 
 			/**
 			 * Called when user clicks on btnLogin
-			 * 
 			 * Checks login, displays error or continues to task manager screen.
-			 * 
 			 * @param View
 			 */
 			public void onClick(View v) {
@@ -80,6 +81,7 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
+		
 		btnNewUser.setOnClickListener(new View.OnClickListener() {
 
 			/**

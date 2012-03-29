@@ -60,7 +60,7 @@ public class TODOManagerActivity extends ListActivity {
 
 	private EditText filterDate;
 	private SearchView filterText;
-	private Spinner filterCategory, filterComplete;
+	private Spinner filterCategory, filterComplete, filters;
 
 	private static final int DATE_DIALOG_ID = 0;
 
@@ -151,9 +151,7 @@ public class TODOManagerActivity extends ListActivity {
 		filterDate.setText(dateFormatter.format(date));
 	}
 
-	/**
-	 * DatePicker dialog
-	 */
+	//DatePicker dialog
 	private DatePickerDialog.OnDateSetListener mDateSetListener =
 			new DatePickerDialog.OnDateSetListener() {
 
@@ -169,7 +167,9 @@ public class TODOManagerActivity extends ListActivity {
 	};
 
 	/**
-	 * custom dialog for creating new category
+	 * Custom dialog for creating new category
+	 * @param int id - id of new dialog
+	 * @return Dialog - new dialog to be created
 	 */
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -188,6 +188,7 @@ public class TODOManagerActivity extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.mainmenu, menu);
+		filters = (Spinner) menu.findItem(R.id.spinFilters).getActionView();
 		filterText = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		filterText.setOnQueryTextListener(new OnQueryTextListener() {
 

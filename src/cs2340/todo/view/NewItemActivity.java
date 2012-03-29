@@ -77,9 +77,11 @@ public class NewItemActivity extends Activity {
 		this, R.array.categories_array, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		spinCategory.setAdapter(adapter);
+		spinCategory.setOnItemSelectedListener(new MyOnItemSelectedListener());
 		
 		manager = new TODOManager(NewItemActivity.this);
 
+		//Set up onClickListeners
 		btnDone.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -149,7 +151,6 @@ public class NewItemActivity extends Activity {
 			
 		});
 		
-
 		txtDate.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				showDialog(DATE_DIALOG_ID);
@@ -162,22 +163,20 @@ public class NewItemActivity extends Activity {
 			}
 		});
 
+		//Get current date
 		final Calendar c = Calendar.getInstance();
 		mYear = c.get(Calendar.YEAR);
 		mMonth = c.get(Calendar.MONTH);
 		mDay = c.get(Calendar.DAY_OF_MONTH);
 		mHour = c.get(Calendar.HOUR);
 		mMinute = c.get(Calendar.MINUTE);
-
 		date = new Date();
-		
-		spinCategory.setOnItemSelectedListener(new MyOnItemSelectedListener());
 		updateDisplay();
 	}
 
 	/**
-	 * checks if new item info is correct
-	 * @return boolean
+	 * Check if new item info is correct
+	 * @return boolean - True if item creation is successful
 	 */
 	public boolean checkItem() {
 		if(category.toString().equals("Choose a category")) {
@@ -201,9 +200,7 @@ public class NewItemActivity extends Activity {
 		txtTime.setText(timeFormatter.format(date));
 	}
 
-	/**
-	 * DatePicker dialog
-	 */
+	//DatePicker dialog
 	private DatePickerDialog.OnDateSetListener mDateSetListener =
 			new DatePickerDialog.OnDateSetListener() {
 
@@ -216,9 +213,7 @@ public class NewItemActivity extends Activity {
 		}
 	};
 
-	/**
-	 * TimePicker dialog
-	 */
+	//TimePicker dialog
 	private TimePickerDialog.OnTimeSetListener mTimeSetListener =
 			new TimePickerDialog.OnTimeSetListener() {
 		public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -229,7 +224,9 @@ public class NewItemActivity extends Activity {
 	};
 	
 	/**
-	 * custom dialog for creating new category
+	 * Custom dialog for creating new category
+	 * @param int id - id of dialog to be created
+	 * @return Dialog - dialog to be created
 	 */
 	protected Dialog onCreateDialog(int id) {
 		switch (id) {
@@ -250,11 +247,22 @@ public class NewItemActivity extends Activity {
 	 *
 	 */
 	public class MyOnItemSelectedListener implements OnItemSelectedListener {
-
-	    public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+		
+		/**
+		 * What to do when item is selected
+		 * @param AdapterView<?> parent
+		 * @param View view
+		 * @param int pos
+		 * @param long id
+		 */
+		public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
 
 	    }
 
+		/**
+		 * What to do when nothing is selected
+		 * @param AdapterView<?> parent
+		 */
 	    public void onNothingSelected(AdapterView<?> parent) {
 	      // Do nothing.
 	    }
