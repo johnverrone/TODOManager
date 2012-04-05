@@ -26,7 +26,7 @@ import cs2340.todo.model.User;
 
 public class EditItemActivity extends Activity {
 
-	private Button btnDone, btnCancel;
+	private Button btnDone;
 	private EditText txtTitle, txtDescription, txtDate, txtTime, txtLocation;
 	private Spinner spinCategory;
 	private int mYear, mMonth, mDay;
@@ -70,7 +70,6 @@ public class EditItemActivity extends Activity {
         String itemTime = timeFormat.format(item.getDate());
         
 		btnDone = (Button) findViewById(R.id.btnDone);
-		btnCancel = (Button) findViewById(R.id.btnCancel);
 		txtTitle = (EditText) findViewById(R.id.txtTitle);
 		txtDescription = (EditText) findViewById(R.id.txtDescription);
 		txtDate = (EditText) findViewById(R.id.txtDate);
@@ -108,13 +107,6 @@ public class EditItemActivity extends Activity {
 				manager.updateItem(user, item);
 				manager.close();
 				setResult(RESULT_OK);
-				finish();
-			}
-		});
-		
-		btnCancel.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
 				finish();
 			}
 		});

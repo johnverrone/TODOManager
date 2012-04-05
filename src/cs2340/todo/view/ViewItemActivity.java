@@ -7,16 +7,20 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import cs2340.todo.model.Category;
 import cs2340.todo.model.TODOItem;
+import cs2340.todo.model.User;
 
 public class ViewItemActivity extends Activity {
 
 	private TextView txtTitle, txtDescription, txtDate, txtTime, txtLocation, txtCategory;
+	private User user;
 	private TODOItem item;
 	
 
@@ -29,10 +33,12 @@ public class ViewItemActivity extends Activity {
 		
 		Bundle getU = getIntent().getExtras();
         SimpleDateFormat df = new SimpleDateFormat("EEE MMM d HH:mm:ss zzz yyyy");
+        user = null;
         item = null;
         try {
 			item = new TODOItem(getU.getString("username"), getU.getString("title"), getU.getString("description"), 
 					df.parse(getU.getString("date")), getU.getString("location"), new Category(getU.getString("category")));
+			user = new User(getU.getString("name"), getU.getString("username"), getU.getString("email"), getU.getString("password"));
 		} catch (ParseException e) {
 			
 		}
@@ -68,13 +74,20 @@ public class ViewItemActivity extends Activity {
 		txtLocation.setOnClickListener(new View.OnClickListener() {
 			
 			public void onClick(View v) {
-				Intent maps = new Intent(ViewItemActivity.this, MainMapActivity.class);			
+				Intent maps = new Intent(ViewItemActivity.this, MainMapActivity.class);
+				maps.putExtra("sLoc", item.getLocation());
 				startActivity(maps);
 			}
 		});
 	}
 
 
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.viewitemmenu, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
 
 
 	@Override
@@ -83,6 +96,20 @@ public class ViewItemActivity extends Activity {
 		case android.R.id.home:
 			setResult(RESULT_OK);
 			finish();
+		case R.id.editItem:
+			Intent edit = new Intent(ViewItemActivity.this, EditItemActivity.class);
+			Bundle u = new Bundle();
+			u.putString("name", user.getName());
+			u.putString("username", user.getUsername());
+			u.putString("password", user.getPassword());
+			u.putString("email", user.getEmail());
+			u.putString("title", this.item.getTitle().toString());
+			u.putString("description", this.item.getDescription().toString());
+			u.putString("date", this.item.getDate().toString());
+			u.putString("location", this.item.getLocation().toString());
+			u.putString("category", this.item.getCategory().toString());
+			edit.putExtras(u);
+			//startActivity(edit);
 		}
 		return super.onOptionsItemSelected(item);
 	}

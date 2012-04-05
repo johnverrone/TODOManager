@@ -88,14 +88,6 @@
         android:layout_margin="3dp"/>
 
     <Button
-        android:id="@+id/btnCancel"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/btnDone"
-        android:layout_centerHorizontal="true"
-        android:text="@string/cancel" />
-
-    <Button
         android:id="@+id/btnDone"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

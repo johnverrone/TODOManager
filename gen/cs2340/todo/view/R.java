@@ -12,49 +12,61 @@ public final class R {
         public static final int categories_array=0x7f050000;
         public static final int completion_array=0x7f050002;
         public static final int filter_categories_array=0x7f050001;
+        public static final int filters_array=0x7f050003;
     }
     public static final class attr {
     }
     public static final class drawable {
         public static final int action_search=0x7f020000;
         public static final int back=0x7f020001;
-        public static final int content_new_event=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
+        public static final int collections_labels=0x7f020002;
+        public static final int content_edit=0x7f020003;
+        public static final int content_new_event=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
     }
     public static final class id {
-        public static final int RelativeLayout1=0x7f070012;
-        public static final int btnCancel=0x7f070009;
-        public static final int btnCreate=0x7f07001e;
-        public static final int btnDone=0x7f07000a;
-        public static final int btnLogin=0x7f070010;
-        public static final int btnNewUser=0x7f070011;
-        public static final int check=0x7f07000c;
-        public static final int filterDate=0x7f070015;
+        public static final int RelativeLayout1=0x7f070011;
+        public static final int btnCancel=0x7f070022;
+        public static final int btnCreate=0x7f070023;
+        public static final int btnDone=0x7f070009;
+        public static final int btnLogin=0x7f07000f;
+        public static final int btnNewUser=0x7f070010;
+        public static final int category=0x7f070024;
+        public static final int check=0x7f07000b;
+        public static final int checkCategory=0x7f070013;
+        public static final int checkComplete=0x7f070016;
+        public static final int checkDate=0x7f070019;
+        public static final int complete=0x7f070025;
+        public static final int date=0x7f070026;
+        public static final int editItem=0x7f070029;
+        public static final int filterDate=0x7f07001a;
+        public static final int layoutCategory=0x7f070012;
+        public static final int layoutComplete=0x7f070015;
+        public static final int layoutDate=0x7f070018;
         public static final int layoutDateandtime=0x7f070003;
-        public static final int layoutFilters=0x7f070013;
         public static final int layoutLocation=0x7f070006;
-        public static final int layout_root=0x7f070018;
+        public static final int layout_root=0x7f07001c;
         public static final int lblTitle=0x7f070000;
-        public static final int list_item=0x7f07000b;
-        public static final int menu_search=0x7f07001f;
-        public static final int mvMain=0x7f070017;
-        public static final int newItem=0x7f070020;
-        public static final int relLayoutLogin=0x7f07000d;
+        public static final int list_item=0x7f07000a;
+        public static final int menu_search=0x7f070027;
+        public static final int mvMain=0x7f07001b;
+        public static final int newItem=0x7f070028;
+        public static final int relLayoutLogin=0x7f07000c;
         public static final int spinCategory=0x7f070008;
         public static final int spinFilterCategory=0x7f070014;
-        public static final int spinFilterComplete=0x7f070016;
-        public static final int txtCategory=0x7f070019;
+        public static final int spinFilterComplete=0x7f070017;
+        public static final int txtCategory=0x7f07001d;
         public static final int txtDate=0x7f070004;
         public static final int txtDescription=0x7f070002;
-        public static final int txtEmail=0x7f07001d;
+        public static final int txtEmail=0x7f070021;
         public static final int txtLocation=0x7f070007;
-        public static final int txtName=0x7f07001a;
-        public static final int txtPassword=0x7f07000f;
-        public static final int txtPassword2=0x7f07001c;
+        public static final int txtName=0x7f07001e;
+        public static final int txtPassword=0x7f07000e;
+        public static final int txtPassword2=0x7f070020;
         public static final int txtTime=0x7f070005;
         public static final int txtTitle=0x7f070001;
-        public static final int txtUser=0x7f07000e;
-        public static final int txtUsername=0x7f07001b;
+        public static final int txtUser=0x7f07000d;
+        public static final int txtUsername=0x7f07001f;
     }
     public static final class layout {
         public static final int catergory_item=0x7f030000;
@@ -69,7 +81,9 @@ public final class R {
         public static final int view_item=0x7f030009;
     }
     public static final class menu {
-        public static final int mainmenu=0x7f060000;
+        public static final int filtermenu=0x7f060000;
+        public static final int mainmenu=0x7f060001;
+        public static final int viewitemmenu=0x7f060002;
     }
     public static final class string {
         public static final int all=0x7f04000d;

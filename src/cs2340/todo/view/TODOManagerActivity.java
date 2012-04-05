@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -60,7 +61,8 @@ public class TODOManagerActivity extends ListActivity {
 
 	private EditText filterDate;
 	private SearchView filterText;
-	private Spinner filterCategory, filterComplete, filters;
+	private Spinner filterCategory, filterComplete;
+	public CheckBox cbCategories, cbCompletion, cbDate; 
 
 	private static final int DATE_DIALOG_ID = 0;
 
@@ -78,16 +80,45 @@ public class TODOManagerActivity extends ListActivity {
 		data = items.getUserItems(user);
 		items.close();
 		adapter = new ListAdapter(this, R.layout.list_item, data);
+		adapter.sort(new DateComparator());
 		setListAdapter(adapter);
 
 		filterDate = (EditText) findViewById(R.id.filterDate);
 		filterCategory = (Spinner) findViewById(R.id.spinFilterCategory);
 		filterComplete = (Spinner) findViewById(R.id.spinFilterComplete);
+		cbCategories = (CheckBox) findViewById(R.id.checkCategory);
+		cbCompletion = (CheckBox) findViewById(R.id.checkComplete);
+		cbDate = (CheckBox) findViewById(R.id.checkDate);
 
 		final ListView list = getListView();
 
 		ActionBar bar = getActionBar();
 		bar.setDisplayShowTitleEnabled(true);
+		
+		cbCategories.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				updateFilters();
+			}
+			
+		});
+		cbCompletion.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				updateFilters();
+			}
+			
+		});
+		cbDate.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				updateFilters();
+			}
+			
+		});
 
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -116,7 +147,7 @@ public class TODOManagerActivity extends ListActivity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		filterCategory.setAdapter(adapter);
 		filterCategory.setOnItemSelectedListener(new MyOnItemSelectedListener());
-		
+
 		ArrayAdapter<CharSequence> fadapter = ArrayAdapter.createFromResource(
 				this, R.array.completion_array, android.R.layout.simple_spinner_item);
 		fadapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -140,6 +171,7 @@ public class TODOManagerActivity extends ListActivity {
 			items.close();	
 			adapter = new ListAdapter(this, R.layout.list_item, this.data);
 			setListAdapter(adapter);
+			updateFilters();
 		}
 	}
 
@@ -149,6 +181,14 @@ public class TODOManagerActivity extends ListActivity {
 	private void updateDisplay() {
 		SimpleDateFormat dateFormatter = new SimpleDateFormat("MM/d/yy");
 		filterDate.setText(dateFormatter.format(date));
+	}
+	
+	/**
+	 * update the filter!
+	 */
+	private void updateFilters() {
+		adapter.getFilter().filter(filterText.getQuery());
+		adapter.notifyDataSetChanged();
 	}
 
 	//DatePicker dialog
@@ -161,8 +201,7 @@ public class TODOManagerActivity extends ListActivity {
 			date.setMonth(monthOfYear);
 			date.setDate(dayOfMonth);
 			updateDisplay();
-			adapter.getFilter().filter(filterText.getQuery());
-			adapter.notifyDataSetChanged();
+			updateFilters();
 		}
 	};
 
@@ -180,7 +219,6 @@ public class TODOManagerActivity extends ListActivity {
 		return null;
 	}
 
-
 	/**
 	 * Called when the options menu is created
 	 * @param menu - the menu to be created
@@ -188,7 +226,7 @@ public class TODOManagerActivity extends ListActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.mainmenu, menu);
-		filters = (Spinner) menu.findItem(R.id.spinFilters).getActionView();
+		filterComplete.setOnItemSelectedListener(new MyOnItemSelectedListener());
 		filterText = (SearchView) menu.findItem(R.id.menu_search).getActionView();
 		filterText.setOnQueryTextListener(new OnQueryTextListener() {
 
@@ -223,6 +261,7 @@ public class TODOManagerActivity extends ListActivity {
 			u.putString("email", user.getEmail());
 			newItem.putExtras(u);
 			startActivityForResult(newItem, CREATE_REQUEST_CODE);
+			
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -236,8 +275,7 @@ public class TODOManagerActivity extends ListActivity {
 
 		public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 			setListAdapter(adapter);
-			adapter.getFilter().filter(filterText.getQuery());
-			adapter.notifyDataSetChanged();
+			updateFilters();
 		}
 
 		public void onNothingSelected(AdapterView<?> arg0) {
@@ -245,6 +283,21 @@ public class TODOManagerActivity extends ListActivity {
 
 		}
 	}
+
+	/**
+	 * 
+	 * @author Vertigo
+	 * 
+	 */
+
+	private class DateComparator implements Comparator<TODOItem> {
+
+		public int compare(TODOItem lhs, TODOItem rhs) {
+			return lhs.getDate().compareTo(rhs.getDate());
+		}
+
+	}
+
 
 
 	/**
@@ -354,11 +407,12 @@ public class TODOManagerActivity extends ListActivity {
 				for(int i = 0, l = items.size(); i < l; i++)
 				{
 					TODOItem item = items.get(i);
-					if(item.getTitle().toLowerCase().contains(constraint))
-						if(item.getCategory().toString().equals(category) || category.equals("all"))
-							if(item.getDate().after(fDate))
-								if(item.getComplete() == completion || completion == -1)
+					if(item.getTitle().toLowerCase().contains(constraint)) {
+						if((item.getCategory().toString().equals(category) && cbCategories.isChecked()) || !cbCategories.isChecked())
+							if((item.getDate().after(fDate) && cbDate.isChecked()) || !cbDate.isChecked())
+								if((item.getComplete() == completion && cbCompletion.isChecked()) || !cbCompletion.isChecked())
 									filteredItemsArray.add(item);
+					}
 				}
 				result.count = filteredItemsArray.size();
 				result.values = filteredItemsArray;

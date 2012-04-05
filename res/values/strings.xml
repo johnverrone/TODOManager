@@ -5,21 +5,25 @@
     <string name="app_name">To-Do Manager</string>
 
     <string-array name="categories_array">
-        <item>Choose a category</item>
+        <item>Choose a Category</item>
         <item>Personal</item>
         <item>School</item>
         <item>Work</item>
     </string-array>
     <string-array name="filter_categories_array">
-        <item>All Categories</item>
         <item>Personal</item>
         <item>School</item>
         <item>Work</item>
     </string-array>
     <string-array name="completion_array">
-        <item>All Items</item>
         <item>Complete</item>
         <item>Incomplete</item>
+    </string-array>
+    <string-array name="filters_array">
+        <item>Filters</item>
+        <item>Filter by Date</item>
+        <item>Filter by Category</item>
+        <item>Filter by Completion</item>
     </string-array>
 
     <string name="edit_item">Edit Item</string>

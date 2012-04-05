@@ -6,41 +6,67 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/layoutFilters"
+        android:id="@+id/layoutCategory"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/txtDescription"
-        android:layout_margin="3dp"
         android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkCategory"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <Spinner
             android:id="@+id/spinFilterCategory"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutComplete"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutCategory"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkComplete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <Spinner
+            android:id="@+id/spinFilterComplete"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutDate"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layoutComplete"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/checkDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
         <EditText
             android:id="@+id/filterDate"
-            android:layout_width="0dp"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:clickable="false"
             android:focusable="false"
             android:hint="@string/date"
             android:inputType="date" />
     </LinearLayout>
 
-    <Spinner
-            android:id="@+id/spinFilterComplete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/layoutFilters" android:layout_margin="3dip"/>
-    
     <ListView
         android:id="@android:id/list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/spinFilterComplete"
+        android:layout_below="@+id/layoutDate"
         android:layout_centerHorizontal="true"
         android:layout_margin="3dp"
         android:choiceMode="multipleChoice" />

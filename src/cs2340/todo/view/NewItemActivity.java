@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -15,6 +16,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -37,7 +39,7 @@ import cs2340.todo.model.User;
  */
 public class NewItemActivity extends Activity {
 
-	private Button btnDone, btnCancel;
+	private Button btnDone;
 	private EditText txtTitle, txtDescription, txtDate, txtTime, txtLocation;
 	private Spinner spinCategory;
 	private String title, description, location;
@@ -64,13 +66,15 @@ public class NewItemActivity extends Activity {
         user = new User(getU.getString("name"), getU.getString("username"), getU.getString("email"), getU.getString("password"));
 
 		btnDone = (Button) findViewById(R.id.btnDone);
-		btnCancel = (Button) findViewById(R.id.btnCancel);
 		txtTitle = (EditText) findViewById(R.id.txtTitle);
 		txtDescription = (EditText) findViewById(R.id.txtDescription);
 		txtDate = (EditText) findViewById(R.id.txtDate);
 		txtTime = (EditText) findViewById(R.id.txtTime);
 		txtLocation = (EditText) findViewById(R.id.txtLocation);
 		spinCategory = (Spinner) findViewById(R.id.spinCategory);
+		
+		ActionBar bar = getActionBar();
+		bar.setDisplayHomeAsUpEnabled(true);
 	
 		//Category spin adapter
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
@@ -113,13 +117,6 @@ public class NewItemActivity extends Activity {
 					newItemCreated.show();
 
 				}
-			}
-		});
-		
-		btnCancel.setOnClickListener(new View.OnClickListener() {
-			
-			public void onClick(View v) {
-				finish();
 			}
 		});
 		
@@ -173,6 +170,20 @@ public class NewItemActivity extends Activity {
 		date = new Date();
 		updateDisplay();
 	}
+	
+	
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch(item.getItemId()) {
+		case android.R.id.home:
+			setResult(RESULT_OK);
+			finish();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+
 
 	/**
 	 * Check if new item info is correct
