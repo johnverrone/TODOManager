@@ -103,6 +103,12 @@ public class TODOManager {
 		return items.insert(DATABASE_TABLE_NAME, null, cv);
 	}
 	
+	
+	public void deleteItem(int id) {
+		items.execSQL("DELETE FROM " + DATABASE_TABLE_NAME + " WHERE "
+				+ ITEM_ID + "=" + id);
+	}
+	
 	/**
 	 * reset the TODOItem database
 	 */

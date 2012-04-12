@@ -96,6 +96,7 @@ public class ViewItemActivity extends Activity {
 		case android.R.id.home:
 			setResult(RESULT_OK);
 			finish();
+			return true;
 		case R.id.editItem:
 			Intent edit = new Intent(ViewItemActivity.this, EditItemActivity.class);
 			Bundle u = new Bundle();
@@ -109,7 +110,8 @@ public class ViewItemActivity extends Activity {
 			u.putString("location", this.item.getLocation().toString());
 			u.putString("category", this.item.getCategory().toString());
 			edit.putExtras(u);
-			//startActivity(edit);
+			startActivity(edit);
+			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

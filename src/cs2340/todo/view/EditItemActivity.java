@@ -106,7 +106,6 @@ public class EditItemActivity extends Activity {
 				manager.open();
 				manager.updateItem(user, item);
 				manager.close();
-				setResult(RESULT_OK);
 				finish();
 			}
 		});
@@ -120,6 +119,7 @@ public class EditItemActivity extends Activity {
 		});
 
 		txtDate.setOnClickListener(new View.OnClickListener() {
+			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				showDialog(DATE_DIALOG_ID);
 			}

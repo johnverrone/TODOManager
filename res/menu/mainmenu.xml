@@ -5,12 +5,12 @@
         android:id="@+id/menu_search"
         android:actionViewClass="android.widget.SearchView"
         android:icon="@drawable/action_search"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom|withText"
         android:title="Search"/>
     <item
         android:id="@+id/newItem"
         android:icon="@+drawable/content_new_event"
-        android:showAsAction="always"
+        android:showAsAction="ifRoom|withText"
         android:title="New"/>
 
 </menu>

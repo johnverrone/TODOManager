@@ -305,7 +305,7 @@ public class TODOManagerActivity extends ListActivity {
 	 * @author Vertigo
 	 *
 	 */
-	private class ListAdapter extends ArrayAdapter<TODOItem> implements Filterable {
+	public class ListAdapter extends ArrayAdapter<TODOItem> implements Filterable {
 
 		private List<TODOItem> items;
 		private List<TODOItem> filteredItems;
@@ -375,7 +375,7 @@ public class TODOManagerActivity extends ListActivity {
 			return searchFilter;
 		}
 
-		private class ItemFilter extends Filter {
+		public class ItemFilter extends Filter {
 
 			@Override
 			protected FilterResults performFiltering(CharSequence constraint) {
