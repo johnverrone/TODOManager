@@ -19,18 +19,18 @@ import cs2340.todo.model.UserManager;
  *
  */
 public class NewUserActivity extends Activity {
-	
+
 	private Button btnCreate, btnCancel;
 	private EditText txtName, txtUsername, txtPassword, txtPassword2, txtEmail;
 	private String name, username, password, password2, email;
-	
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.new_user);
-		
+
 		btnCreate = (Button) findViewById(R.id.btnCreate);
 		btnCancel = (Button) findViewById(R.id.btnCancel);
 		txtName = (EditText) findViewById(R.id.txtName);
@@ -38,10 +38,10 @@ public class NewUserActivity extends Activity {
 		txtPassword = (EditText) findViewById(R.id.txtPassword);
 		txtPassword2 = (EditText) findViewById(R.id.txtPassword2);
 		txtEmail = (EditText) findViewById(R.id.txtEmail);
-		
+
 		//Set onClickListeners and onFocusChangedListeners
 		txtUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-			
+
 			public void onFocusChange(View v, boolean hasFocus) {
 				if(!hasFocus) {
 					UserManager check = new UserManager(NewUserActivity.this);
@@ -60,14 +60,15 @@ public class NewUserActivity extends Activity {
 		});
 
 		btnCreate.setOnClickListener(new View.OnClickListener() {
-			
+
+			@SuppressWarnings("deprecation")
 			public void onClick(View v) {
 				name = txtName.getText().toString().trim();
 				username = txtUsername.getText().toString().trim();
 				password = txtPassword.getText().toString().trim();
 				password2 = txtPassword2.getText().toString().trim();
 				email = txtEmail.getText().toString().trim();
-				
+
 				if (checkUser()) {
 					User newUser = new User(name, username, email, password);
 
@@ -78,9 +79,9 @@ public class NewUserActivity extends Activity {
 						newUserError.setTitle("Error");
 						newUserError.setMessage("There was an error adding the user to the database.");
 						newUserError.setButton("Continue", new DialogInterface.OnClickListener() {
-							
+
 							public void onClick(DialogInterface dialog, int which) {
-				
+
 							}
 						});
 						newUserError.show();
@@ -105,16 +106,16 @@ public class NewUserActivity extends Activity {
 					userError.setTitle("Error");
 					userError.setMessage("Enter valid login information.");
 					userError.setButton("Continue", new DialogInterface.OnClickListener() {
-						
+
 						public void onClick(DialogInterface dialog, int which) {
-			
+
 						}
 					});
 					userError.show();
 				}
 			}
 		});
-		
+
 		btnCancel.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				finish();
@@ -122,7 +123,16 @@ public class NewUserActivity extends Activity {
 		});
 
 	}
-	
+
+	// Cut-paste setVars() into NewUserActivity before attempting this!
+	public void setVars(String aName, String aPassword, String aPassword2, String aEmail, String aUsername) {
+		name = aName;
+		password = aPassword;
+		password2 = aPassword2;
+		email = aEmail;
+		username = aUsername;
+	}
+
 	/**
 	 * checks to see if the user info is correct
 	 * @return boolean

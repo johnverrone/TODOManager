@@ -171,7 +171,10 @@ public class NewItemActivity extends Activity {
 		updateDisplay();
 	}
 	
-	
+	public void setVaribles(String Title, Category select){
+		title = Title;
+		category = select;
+	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
